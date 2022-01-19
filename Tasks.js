@@ -7,6 +7,7 @@ function positiveSum(arr) {
         }
     })
 
-    return result
+    console.log(212);
+    return result;
 
 }
