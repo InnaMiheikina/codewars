@@ -1,3 +1,1 @@
-// inna
-/* inna my
-name  */
+var myName;
