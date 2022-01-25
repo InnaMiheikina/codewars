@@ -1,16 +1,17 @@
-function accum(s) {
-    let arr = []
-    for (let i = 0; i < s.length; i++) {
-        arr.push(format (s[i], i + 1))
-    }
-    return arr.join( `-`)
+function duplicateEncode(word){
+    var letterCount = {};
+    var letters = word.toLowerCase().split('');
+
+    letters.forEach(function(letter) {
+        letterCount[letter] = (letterCount [letter] || 0) + 1;
+    });
+
+    return letters.map(function(letter) {
+        return letterCount[letter] === 1 ? '(' : ')';
+    }).join('');
 }
 
-function format(s, num) {
-    let letter = s.toUpperCase()
-
-    while (letter.length !== num) {
-        letter += s.toLowerCase()
-    }
-    return letter
-}
+console.log(duplicateEncode("aleluia"))
+console.log(duplicateEncode("AleLuia"))
+console.log(duplicateEncode("No duplicates"))
+console.log(duplicateEncode("All duplicated ALL DUPLICATED"))
