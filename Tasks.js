@@ -1,3 +1,16 @@
-function symmetricPoint(p, q) {
-    return [2 * q[0] - p[0], 2 * q[1] - p[1] ]
+function accum(s) {
+    let arr = []
+    for (let i = 0; i < s.length; i++) {
+        arr.push(format (s[i], i + 1))
+    }
+    return arr.join( `-`)
+}
+
+function format(s, num) {
+    let letter = s.toUpperCase()
+
+    while (letter.length !== num) {
+        letter += s.toLowerCase()
+    }
+    return letter
 }
