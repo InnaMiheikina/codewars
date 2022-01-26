@@ -1,12 +1,16 @@
-function isValidWalk(walk) {
-    var Es = walk.filter(a => a == 'e')
-    var Ws = walk.filter(b => b == 'w')
-    var Ns = walk.filter(c => c == 'n')
-    var Ss = walk.filter(d => d == 's')
-
-    if (Es.length == Ws.length && Ns.length == Ss.length && walk.length == 10) {
-        return true
-    } else {
-        return false
+function towerBuilder(nFloors) {
+    var finalArray = [];
+    var numSpaces = 0;
+    // Start from the reverse.
+    for (i = nFloors; i > 0; i--) {
+        // At the end, the number of spaces are 0.
+        // Have one and less for the half of the stars.
+        // Add another set of spaces.
+        finalArray.push(" ".repeat(numSpaces) + "*".repeat(i) + "*".repeat(i-1)  + " ".repeat(numSpaces));
+        // Increment the space, while going to top.
+        numSpaces++;
     }
+    // Reverse the array.
+    return finalArray.reverse();
 }
+console.log(towerBuilder(3));
