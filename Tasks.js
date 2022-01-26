@@ -1,11 +1,6 @@
-function cakes(recipe, available) {
-    var n=[];
-    for( key in recipe){
-        if (key in available){
-            var num=Math.floor(available[key]/recipe[key]);
-            n.push(num);
-        }
-        else{ return 0;}
+function pillars(num_pill, dist, width) {
+    if(num_pill < 2){
+        return 0;
     }
-    return parseInt(n.sort((x,y)=>x-y).slice(0,1));
+    return num_pill * ((dist * 100) + width) - (width * 2) - (dist * 100);
 }
