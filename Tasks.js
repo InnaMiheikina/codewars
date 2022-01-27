@@ -1,19 +1,9 @@
-function sumPairs(ints, s) {
-var map = {},
-    pair, pairMaxIndex = ints.length - 1;
-
-for (var i = 0; i <= pairMaxIndex; i++) {
-    var a = ints[i];
-    var b = s - a;
-    var j = map[b];
-    if (j !== undefined && i <= pairMaxIndex && j <= pairMaxIndex) {
-        pairMaxIndex = i > j ? i : j;
-        pair = i < j ? [a, b] : [b, a];
-    }
-    var tmp = map[a];
-    if (tmp === undefined || i < tmp) {
-        map[a] = i;
-    }
+function orderWeight(strng) {
+    const sum = (str)=>str.split('').reduce((sum,el)=>(sum+(+el)),0);
+    function comp(a,b){
+        let sumA = sum(a);
+        let sumB = sum(b);
+        return sumA === sumB ? a.localeCompare(b) : sumA - sumB;
+    };
+    return strng.split(' ').sort(comp).join(' ');
 }
-return pair;
-};
