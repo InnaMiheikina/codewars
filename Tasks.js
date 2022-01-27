@@ -1,3 +1,4 @@
+function sumPairs(ints, s) {
 var map = {},
     pair, pairMaxIndex = ints.length - 1;
 
