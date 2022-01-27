@@ -1,22 +1,18 @@
-function dblLinear(n) {
-    let u = [1], x = 0, y = 0
-    for (let i = 0; i < n; i++) {
-        let nextX = 2 * u[x] + 1, nextY = 3 * u[y] + 1
-        if (nextX <= nextY) {
-            u.push(nextX)
-            x++
-            if (nextX == nextY)
-                y++
-        } else {
-            u.push(nextY)
-            y++
-        }
-    }
-    return u[n]
-}
+var map = {},
+    pair, pairMaxIndex = ints.length - 1;
 
-console.log(dblLinear(10) + " = " + 22)
-console.log(dblLinear(20) + " = " + 57)
-console.log(dblLinear(30) + " = " + 91)
-console.log(dblLinear(50) + " = " + 175)
-console.log(dblLinear(100) + " = " + 447)
+for (var i = 0; i <= pairMaxIndex; i++) {
+    var a = ints[i];
+    var b = s - a;
+    var j = map[b];
+    if (j !== undefined && i <= pairMaxIndex && j <= pairMaxIndex) {
+        pairMaxIndex = i > j ? i : j;
+        pair = i < j ? [a, b] : [b, a];
+    }
+    var tmp = map[a];
+    if (tmp === undefined || i < tmp) {
+        map[a] = i;
+    }
+}
+return pair;
+};
