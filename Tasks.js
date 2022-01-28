@@ -1,9 +1,29 @@
-function nbYear(p0, percent, aug, p) {
+function nextSmaller(n) {
 
-    var i = 0;
-    while (true) {
-        if (p0 >= p) {return i;}
-        p0 = p0 * (1 + percent/100) + aug; i++;
+    const arr = ( n + '' ).split( '' ).map( Number );
+    let i, prev = 9;
+    for ( i = arr.length; i--; ) {
+        if ( arr[ i ] > prev )
+            break;
+        prev = arr[ i ];
     }
+
+    if ( i < 0 )
+        return -1;
+
+    const pivot_i = i;
+    const pivot = arr[ pivot_i ];
+
+    for ( i = arr.length; i--; ) {
+        if ( arr[ i ] < pivot )
+            break;
+    }
+
+    arr[ pivot_i ] = arr[ i ];
+    arr[ i ] = pivot;
+
+    if ( arr[ 0 ] === 0 )
+        return -1;
+
+    return +arr.slice( 0, pivot_i + 1 ).concat( arr.slice( pivot_i + 1 ).reverse( ) ).join('');
 }
-nbYear(1000, 2, 50, 1200)
