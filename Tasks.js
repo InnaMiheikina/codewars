@@ -1,16 +1,9 @@
-function formatDuration (seconds) {
-    var time = { year: 31536000, day: 86400, hour: 3600, minute: 60, second: 1 },
-        res = [];
+function nbYear(p0, percent, aug, p) {
 
-    if (seconds === 0) return 'now';
-
-    for (var key in time) {
-        if (seconds >= time[key]) {
-            var val = Math.floor(seconds/time[key]);
-            res.push(val += val > 1 ? ' ' + key + 's' : ' ' + key);
-            seconds = seconds % time[key];
-        }
+    var i = 0;
+    while (true) {
+        if (p0 >= p) {return i;}
+        p0 = p0 * (1 + percent/100) + aug; i++;
     }
-
-    return res.length > 1 ? res.join(', ').replace(/,([^,]*)$/,' and'+'$1') : res[0]
 }
+nbYear(1000, 2, 50, 1200
