@@ -1,20 +1,16 @@
-Array.prototype.sameStructureAs = function (other) {
-    // Return 'true' if and only if 'other' has the same
-    // nesting structure as 'this'.
+function formatDuration (seconds) {
+    var time = { year: 31536000, day: 86400, hour: 3600, minute: 60, second: 1 },
+        res = [];
 
-    // Note: You are given a function isArray(o) that returns
-    // whether its argument is an array.
-    if (this.length !== other.length) {
-        return false;
-    }
-    for (var i = 0; i < this.length; i++) {
-        if (isArray(this[i]) && isArray(other[i])) {
-            if (!this[i].sameStructureAs(other[i])) { return false; }
-        } else if (!isArray(this[i]) && isArray(other[i])) {
-            return false;
-        } else if (isArray(this[i]) && !isArray(other[i])) {
-            return false;
+    if (seconds === 0) return 'now';
+
+    for (var key in time) {
+        if (seconds >= time[key]) {
+            var val = Math.floor(seconds/time[key]);
+            res.push(val += val > 1 ? ' ' + key + 's' : ' ' + key);
+            seconds = seconds % time[key];
         }
     }
-    return true
-};
+
+    return res.length > 1 ? res.join(', ').replace(/,([^,]*)$/,' and'+'$1') : res[0]
+}
