@@ -6,4 +6,4 @@ function nbYear(p0, percent, aug, p) {
         p0 = p0 * (1 + percent/100) + aug; i++;
     }
 }
-nbYear(1000, 2, 50, 1200
+nbYear(1000, 2, 50, 1200)
