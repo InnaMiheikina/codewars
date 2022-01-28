@@ -1,48 +1,33 @@
-function getPINs(observed) {
-    var map = {
-        1 : [1,2,4],
-        2 : [1,2,3,5],
-        3 : [3,2,6],
-        4 : [1,4,5,7],
-        5 : [2,4,5,6,8],
-        6 : [3,5,6,9],
-        7 : [4,7,8],
-        8 : [5,7,8,9,0],
-        9 : [6,8,9],
-        0 : [8,0]
-    }
-    function getNum(arr,index) {
-        return arr.map( (item,i)=>{
-            return item[index[i].start];
-        }).join('');
-    }
-    function riseNum(index){
-        let isUp = false;
-        return index.reverse().map( (item,i)=> {
-            let start = item.start,max = item.max;
-            if(i ===0 ||isUp === true)start++;
-            if(start === max){
-                isUp = true;
-                start = 0;
-            }else{
-                isUp = false;
+function VigenèreCipher(key, abc) {
+
+    this.encode = function (str) {
+        var encodeStr = ''
+        for (var i in str) {
+            var c = str[i];
+            var k = key[i % key.length];
+            if (abc.indexOf(c) >= 0) {
+                encodeStr += abc[(abc.indexOf(c) + abc.indexOf(k)) % abc.length];
+            } else {
+                encodeStr += c;
             }
-            return {start : start,max : max};
-        }).reverse();
-    }
-    var arr = observed.split('').map( item => {
-        return map[item];
-    });
-    var index = arr.map( item=> {
-        return {start : 0,max : item.length}
-    });
-    var max = arr.reduce( (total,item)=> {
-        return total * item.length;
-    },1);
-    var res = [];
-    for(let i=0;i<max;i++){
-        res.push(getNum(arr,index));
-        index = riseNum(index);
-    }
-    return res;
+        }
+        return encodeStr;
+    };
+
+
+    this.decode = function (str) {
+        var decodeStr = '';
+        for (var i in str) {
+            var z = str[i];
+            var k = key[i % key.length];
+            if (abc.indexOf(z) >= 0) {
+                var idx = (abc.indexOf(z) + abc.length - abc.indexOf(k)) % abc.length;
+                var c = abc[idx];
+                decodeStr += c;
+            } else {
+                decodeStr += z;
+            };
+        }
+        return decodeStr
+    };
 }
