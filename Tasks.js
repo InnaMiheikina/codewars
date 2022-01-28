@@ -1,33 +1,20 @@
-function VigenèreCipher(key, abc) {
+Array.prototype.sameStructureAs = function (other) {
+    // Return 'true' if and only if 'other' has the same
+    // nesting structure as 'this'.
 
-    this.encode = function (str) {
-        var encodeStr = ''
-        for (var i in str) {
-            var c = str[i];
-            var k = key[i % key.length];
-            if (abc.indexOf(c) >= 0) {
-                encodeStr += abc[(abc.indexOf(c) + abc.indexOf(k)) % abc.length];
-            } else {
-                encodeStr += c;
-            }
+    // Note: You are given a function isArray(o) that returns
+    // whether its argument is an array.
+    if (this.length !== other.length) {
+        return false;
+    }
+    for (var i = 0; i < this.length; i++) {
+        if (isArray(this[i]) && isArray(other[i])) {
+            if (!this[i].sameStructureAs(other[i])) { return false; }
+        } else if (!isArray(this[i]) && isArray(other[i])) {
+            return false;
+        } else if (isArray(this[i]) && !isArray(other[i])) {
+            return false;
         }
-        return encodeStr;
-    };
-
-
-    this.decode = function (str) {
-        var decodeStr = '';
-        for (var i in str) {
-            var z = str[i];
-            var k = key[i % key.length];
-            if (abc.indexOf(z) >= 0) {
-                var idx = (abc.indexOf(z) + abc.length - abc.indexOf(k)) % abc.length;
-                var c = abc[idx];
-                decodeStr += c;
-            } else {
-                decodeStr += z;
-            };
-        }
-        return decodeStr
-    };
-}
+    }
+    return true
+};
