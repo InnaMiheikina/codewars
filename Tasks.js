@@ -1,34 +1,61 @@
-var recoverSecret = function(triplets) {
-    let dedupTriplet = [];
-    triplets.forEach(triplet => dedupTriplet = [...triplet, ...dedupTriplet]);
-    dedupTriplet = Array.from(new Set(dedupTriplet));
+var spiralize = function(size) {
 
-    checkPosition(triplets, dedupTriplet);
-    return dedupTriplet.join('');
-}
+    // insert code here
+    let dir=[
+        {
+            x:0, y:1},
+        {
+            x:1, y:0},
+        {
+            x:0, y:-1},
+        {
+            x:-1,y:0},
+    ];
+    let dir_times = 0;
+    let res = [];
+    for(let i=0;i<size;i++){
 
-function checkPosition(triplets, dedupTriplet) {
-    let flag = false;
-    let i = 1;
-    for (let tri of triplets) {
-        if (changePosition(dedupTriplet, tri[1], tri[2]) || changePosition(dedupTriplet, tri[0], tri[1])) {
-            flag = true;
+        res.push([]);
+        for(let j=0;j<size;j++)
+            res[i].push(0);
+    }
+    let pos = {
+        x:0,y:0};
+    let next,dnext,cur_dir;
+    let flag = 0;
+    while(true){
+
+
+        if(flag ==2)break;
+        res[pos.x][pos.y] = 1;
+        cur_dir = dir[dir_times%4];
+        next = {
+            x:pos.x+cur_dir.x ,y:pos.y+cur_dir.y};
+        if(!(next.x >=0 && next.x < size && next.y >=0 && next.y < size)){
+
+            dir_times++;
+            flag++;
+            continue;
+        }
+        dnext =  {
+            x:next.x + cur_dir.x ,y:next.y+cur_dir.y};
+        if(dnext.x >=0 && dnext.x < size && dnext.y >=0 && dnext.y < size && res[dnext.x][dnext.y] == 1){
+
+
+            dir_times++;
+            flag++;
+            continue;
         }
 
-        if (flag && (i >= triplets.length)) {
-            checkPosition(triplets, dedupTriplet);
+        dnext =  {
+            x:next.x + dir[(dir_times+1)%4].x ,y:next.y + dir[(dir_times+1)%4].y};
+        if(res[dnext.x][dnext.y] == 1){
+
+
+            break;
         }
-
-        i += 1;
+        pos = next;
+        flag = 0;
     }
-}
-
-function changePosition(arr, a, b) {
-    let aIndex = arr.indexOf(a);
-    let bIndex = arr.indexOf(b);
-    if (aIndex > bIndex) {
-        arr.splice(aIndex, 1, b);
-        arr.splice(bIndex, 1, a);
-        return true;
-    }
+    return res;
 }
