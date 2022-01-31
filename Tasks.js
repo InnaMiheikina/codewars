@@ -59,3 +59,5 @@ var spiralize = function(size) {
     }
     return res;
 }
+
+let a = 3;
