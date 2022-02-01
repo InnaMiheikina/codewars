@@ -1,3 +1,3 @@
-function iceBrickVolume(radius, bottleLength, rimLength) {
-    return 2 * Math.pow(radius, 2) * (bottleLength - rimLength);
+function symmetricPoint(p, q) {
+    return [2 * q[0] - p[0], 2 * q[1] - p[1]]
 }
