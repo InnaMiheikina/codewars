@@ -1,3 +1,3 @@
-function getChar(c){
-    return String.fromCharCode(c);
+function digitize(n) {
+    return (n + '').split('').map(Number).reverse();
 }
