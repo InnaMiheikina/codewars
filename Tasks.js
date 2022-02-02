@@ -1,15 +1,11 @@
-
-function digPow(n, p){
-    var digits = n.toString().split('');
-    var result = 0;
-    for(var i=0; i<digits.length; i++){
-        result = result + Math.pow(digits[i], p);
-        p++;
+function cakes(recipe, available) {
+    var n=[];
+    for( key in recipe){
+        if (key in available){
+            var num=Math.floor(available[key]/recipe[key]);
+            n.push(num);
+        }
+        else{ return 0;}
     }
-    var data = result/n;
-    if(result % n === 0){
-        return data;
-    }else{
-        return -1;
-    }
+    return parseInt(n.sort((x,y)=>x-y).slice(0,1));
 }
