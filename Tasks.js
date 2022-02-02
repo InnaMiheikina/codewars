@@ -1,33 +1,17 @@
-function BSTNode(val) {
-    this.dup   = 1;
-    this.left  = null;
-    this.right = null;
-    this.val   = val;
-    this.count = 0;
+function duplicateEncode(word){
+    var letterCount = {};
+    var letters = word.toLowerCase().split('');
+
+    letters.forEach(function(letter) {
+        letterCount[letter] = (letterCount [letter] || 0) + 1;
+    });
+
+    return letters.map(function(letter) {
+        return letterCount[letter] === 1 ? '(' : ')';
+    }).join('');
 }
 
-var insert = (root, num, result, sum, i) => {
-    if (root === null) {
-        result[i] = sum;
-        return new BSTNode(num);
-    }
-
-    if (root.val === num) {
-        root.dup++;
-        result[i] = sum + root.count;
-    } else if (root.val > num) {
-        root.count++;
-        root.left = insert(root.left, num, result, sum, i);
-    } else {
-        root.right = insert(root.right, num, result, sum + root.count + root.dup, i);
-    }
-    return root;
-}
-
-function smaller(arr) {
-    var result = Array(arr.length).fill(0);
-    var root = null;
-    for (var i = arr.length; i--;)
-        root = insert(root, arr[i], result, 0, i);
-    return result;
-}
+console.log(duplicateEncode("aleluia"))
+console.log(duplicateEncode("AleLuia"))
+console.log(duplicateEncode("No duplicates"))
+console.log(duplicateEncode("All duplicated ALL DUPLICATED"))
