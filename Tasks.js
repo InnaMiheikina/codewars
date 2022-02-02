@@ -1,17 +1,10 @@
-function duplicateEncode(word){
-    var letterCount = {};
-    var letters = word.toLowerCase().split('');
+function findOdd(A) {
+    for (let i = 0; i <= A.length-1; i += 1) {
 
-    letters.forEach(function(letter) {
-        letterCount[letter] = (letterCount [letter] || 0) + 1;
-    });
+        let elmLength = A.filter ((elm) => elm === A[i]).length;
 
-    return letters.map(function(letter) {
-        return letterCount[letter] === 1 ? '(' : ')';
-    }).join('');
+        if (elmLength % 2 !== 0) {
+            return A[i];
+        }
+    }
 }
-
-console.log(duplicateEncode("aleluia"))
-console.log(duplicateEncode("AleLuia"))
-console.log(duplicateEncode("No duplicates"))
-console.log(duplicateEncode("All duplicated ALL DUPLICATED"))
