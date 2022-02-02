@@ -1,12 +1,8 @@
-function isValidWalk(walk) {
-    var Es = walk.filter(a => a == 'e')
-    var Ws = walk.filter(b => b == 'w')
-    var Ns = walk.filter(c => c == 'n')
-    var Ss = walk.filter(d => d == 's')
-
-    if (Es.length == Ws.length && Ns.length == Ss.length && walk.length == 10) {
-        return true
-    } else {
-        return false
-    }
+function permutations(string) {
+    return (string.length <= 1) ? [string] :
+        Array.from(new Set(
+            string.split('')
+                .map((char, i) => permutations(string.substr(0, i) + string.substr(i + 1)).map(p => char + p))
+                .reduce((r, x) => r.concat(x), [])
+        ));
 }
