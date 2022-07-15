@@ -1,6 +1,5 @@
-//We need a function that can transform a number into a string.
-//
-// What ways of achieving this do you know?
-function numberToString(num) {
-    return num.toString()
+//Write a function that accepts an integer n and a string s as parameters, and returns a string of s repeated exactly n times.
+function repeatStr (n, s) {
+
+    return s.repeat(n)
 }
