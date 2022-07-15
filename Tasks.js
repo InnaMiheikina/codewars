@@ -1,16 +1,9 @@
-const calcDevidedBy3And5 = (number) => {
+//Complete the method that takes a boolean value and return a "Yes" string for true, or a "No" string for false.
 
-    if (number < 0) return 0;
-
-    let sum = 0;
-
-    for (let i = 0; i < number; ++i) {
-        if (i % 3 === 0 || i % 5 === 0) {
-            sum += i;
-        }
+function boolToWord( bool ){
+    if(bool=== true ){
+        return 'Yes'}
+    else if(bool===false){
+        return 'No'
     }
-
-    return sum;
 }
-
-console.log(calcDevidedBy3And5(6))
