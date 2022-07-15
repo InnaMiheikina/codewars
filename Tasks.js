@@ -1,10 +1,11 @@
-//Write a program that finds the summation of every number from 1 to num. The number will always be a positive integer greater than 0.
+//Complete the square sum function so that it squares each number passed into it and then sums the results together.
 
-var summation = function (num) {
-    let foo = []
-    for (let i = 0; i <= num; i++) {
-       foo.push(i)
+function squareSum(numbers){
+    let sum = 0;
+    for (let i = 0; i < numbers.length; i++) {
+       sum += Math.pow(numbers[i],2)
     }
-    return foo.reduce((acc,el)=>acc+el, 0)
+    return sum;
 }
-console.log(summation(8))
+
+console.log(squareSum([1,2,3]))
