@@ -1,11 +1,9 @@
-//Complete the square sum function so that it squares each number passed into it and then sums the results together.
 
-function squareSum(numbers){
-    let sum = 0;
-    for (let i = 0; i < numbers.length; i++) {
-       sum += Math.pow(numbers[i],2)
-    }
-    return sum;
-}
+//Given an array of integers your solution should find the smallest integer.
 
-console.log(squareSum([1,2,3]))
+   function findSmallestInt(args) {
+      args.sort((a,b) => a-b)
+       return args[0]
+            }
+
+   console.log(findSmallestInt([12,13,11]))
