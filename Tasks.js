@@ -1,7 +1,9 @@
-//Given an array of integers, return a new array with each value doubled.
+//Create a function that checks if a number n is divisible by two numbers x AND y. All inputs are positive, non-zero digits.
 
-function maps(x){
-return x.map(el=>el*2)
+function isDivisible(n, x, y) {
+    if((n%x)===0 && (n%y)===0){
+        return true
+    }else return false
 }
 
-console.log(maps([ 10,2,4,5,6,7]))
+console.log(isDivisible(10,3,2))
