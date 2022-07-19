@@ -1,9 +1,11 @@
-//Create a function that checks if a number n is divisible by two numbers x AND y. All inputs are positive, non-zero digits.
+//The first century spans from the year 1 up to and including the year 100, the second century - from the year 101 up to and including the year 200, etc.
 
-function isDivisible(n, x, y) {
-    if((n%x)===0 && (n%y)===0){
-        return true
-    }else return false
+function century(year) {
+    let result = 0;
+    for (let i = 0; i < year; i++) {
+        if (i % 100 === 0) {
+            result++;
+        }
+    }
+    return result;
 }
-
-console.log(isDivisible(10,3,2))
